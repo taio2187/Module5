@@ -26,10 +26,10 @@
     <header class="jumbotron">
       <h1 class="display-3">Work Day Scheduler</h1>
       <p class="lead">A simple calendar app for scheduling your work day</p>
-      <p id="currentDay" class="lead">
-        
-      </p>
+      <p id="currentDay" class="lead"></p>
     </header>
+    
+    // Laying out each row
     <div class="container">
       <div class='row'>
         <div class='col-1 time-block' style='border-top-style: solid; border-right-style: solid; border-bottom-style: solid; font-size: 14px;'>
@@ -126,7 +126,9 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script>
+      // Posting the current date on the top of the page
       $('#currentDay').html(moment().format('L'));
+      // Coloring each row based on time of day
       for ( i = 0; i < 9; i++) {
         let diff = moment().startOf('day').fromNow();
         let diffNum = parseInt(diff.split(' ', 1),10);
@@ -141,8 +143,10 @@
             $(idStr).addClass('future');
           }
         }
+        // Printing data from local storage
         $(idStr).html(localStorage.getItem(idStoStr));
       }
+    // Saving entered tasks to local storage
     $(".saveBtn").mousedown(function() {
       let time = $(this).prev().attr('id');
       let text = $(this).siblings('.description').val();
